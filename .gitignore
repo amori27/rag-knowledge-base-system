@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+venv/
+env/
+.venv/
+
+# Environment
+.env
+.env.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Data
+data/
+*.pdf
+*.txt
+*.docx
+chroma/
+
+# Testing
+.pytest_cache/
+.coverage
