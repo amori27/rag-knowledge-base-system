@@ -22,7 +22,7 @@ Production-ready RAG system for building knowledge bases with efficient retrieva
 ## Installation
 
 ```bash
-git clone https://github.com/AmirAsaad/rag-knowledge-base-system.git
+git clone https://github.com/amori27/rag-knowledge-base-system.git
 cd rag-knowledge-base-system
 pip install -r requirements.txt
 ```
