@@ -1,4 +1,6 @@
 # RAG Knowledge Base System
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 
 Retrieval-Augmented Generation system with vector database integration, document processing, semantic search, and question answering pipeline.
 
