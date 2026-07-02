@@ -1,72 +1,97 @@
 # RAG Knowledge Base System
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/)
 
+A clean, lightweight RAG (Retrieval-Augmented Generation) pipeline in pure Python. Document chunking, embeddings, vector storage, and retrieval — all in a few hundred lines, with a swappable backend at each layer.
 
-Retrieval-Augmented Generation system with vector database integration, document processing, semantic search, and question answering pipeline.
+---
 
-## Description
+## Architecture
 
-Production-ready RAG system for building knowledge bases with efficient retrieval. Features document chunking, embeddings, vector storage, and hybrid search capabilities. Supports multiple vector databases and embedding models.
-
-## Skills & Technologies
-
-- Python 3.9+
-- LangChain
-- Chroma/Pinecone
-- OpenAI Embeddings
-- FAISS
-- Document Processing
-- Semantic Search
-- RAG Pipeline
-
-## Installation
-
-```bash
-git clone https://github.com/amori27/rag-knowledge-base-system.git
-cd rag-knowledge-base-system
-pip install -r requirements.txt
+```
+┌────────────────┐    ┌──────────────────┐    ┌─────────────────┐    ┌──────────────┐
+│  Documents     │──▶ │ DocumentProcessor│──▶ │ EmbeddingGener. │──▶ │ VectorStore  │
+│  (text/files)  │    │  (chunking)      │    │ (text → vec)    │    │ (FAISS/Chroma)│
+└────────────────┘    └──────────────────┘    └──────────────────┘    └──────────────┘
+                                                                              │
+                                                                              ▼
+                                                                  ┌──────────────────┐
+                                                                  │  RAGPipeline     │
+                                                                  │  retrieve + QA   │
+                                                                  └──────────────────┘
 ```
 
-## Usage
+---
 
-### Create Knowledge Base
+## Quick Start
 
 ```python
-from src.vector_store import VectorStore
 from src.document import DocumentProcessor
-
-processor = DocumentProcessor()
-documents = processor.process_file("data/doc.pdf")
-```
-
-### Query Knowledge Base
-
-```python
+from src.embedding import EmbeddingGenerator
+from src.vector_store import VectorStore
 from src.rag_pipeline import RAGPipeline
 
-rag = RAGPipeline()
-answer = rag.query("What is machine learning?")
+# 1. Build a pipeline
+pipeline = RAGPipeline(
+    embedding_model="text-embedding-ada-002",  # or any local sentence-transformer
+    vector_store_type="faiss",                # or "chroma"
+)
+
+# 2. Add documents
+docs = [
+    {"id": "doc1", "text": "Retrieval-augmented generation grounds LLMs in your data."},
+    {"id": "doc2", "text": "Vector search finds semantically similar chunks via embeddings."},
+]
+pipeline.add_documents(docs)
+
+# 3. Query
+hits = pipeline.retrieve("How does RAG reduce hallucination?", k=3)
+for h in hits:
+    print(f"[{h['score']:.3f}] {h['text']}")
 ```
+
+---
+
+## Modules
+
+| Module | Purpose |
+|---|---|
+| `document.DocumentProcessor` | Splits text into overlapping chunks (`chunk_size`, `chunk_overlap`) |
+| `embedding.EmbeddingGenerator` | Generates embedding vectors; backend-agnostic |
+| `vector_store.VectorStore` | FAISS or Chroma backends; add/remove/query with metadata |
+| `rag_pipeline.RAGPipeline` | Glue class: `add_documents`, `retrieve`, full QA flow |
+
+---
+
+## Configuration
+
+| Knob | Default | Effect |
+|---|---|---|
+| `chunk_size` | 1000 | Characters per chunk |
+| `chunk_overlap` | 200 | Overlap between adjacent chunks |
+| `embedding_dim` | 1536 | Vector dimension (match your embedding model) |
+| `store_type` | `faiss` | `faiss` (in-memory) or `chroma` (persistent) |
+| `k` | 5 | Top-k chunks returned per query |
+
+---
 
 ## Project Structure
 
 ```
 rag-knowledge-base-system/
 ├── src/
-│   ├── vector_store.py      # Vector storage
-│   ├── document.py          # Document processing
-│   ├── embedding.py         # Embedding generation
-│   └── rag_pipeline.py       # RAG pipeline
+│   ├── document.py
+│   ├── embedding.py
+│   ├── vector_store.py
+│   └── rag_pipeline.py
 ├── requirements.txt
+├── LICENSE
 └── README.md
 ```
 
-## References
-
-- [LangChain RAG](https://python.langchain.com/docs/use_cases/question_answering/)
-- [FAISS Documentation](https://github.com/facebookresearch/faiss)
-- [Chroma Documentation](https://docs.trychroma.com/)
+---
 
 ## License
 
-MIT License
+MIT — see [LICENSE](LICENSE).
