@@ -1,7 +1,8 @@
 # RAG Knowledge Base System
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue)](https://www.python.org/)
+[![CI](https://github.com/amori27/rag-knowledge-base-system/actions/workflows/ci.yml/badge.svg)](https://github.com/amori27/rag-knowledge-base-system/actions/workflows/ci.yml)
 
 A clean, lightweight RAG (Retrieval-Augmented Generation) pipeline in pure Python. Document chunking, embeddings, vector storage, and retrieval — all in a few hundred lines, with a swappable backend at each layer.
 
@@ -81,13 +82,32 @@ for h in hits:
 ```
 rag-knowledge-base-system/
 ├── src/
+│   ├── __init__.py
 │   ├── document.py
 │   ├── embedding.py
 │   ├── vector_store.py
 │   └── rag_pipeline.py
-├── requirements.txt
+├── tests/
+│   ├── __init__.py
+│   └── test_example.py
+├── docs/
+│   └── index.md
+├── .github/
+│   ├── workflows/
+│   │   └── ci.yml
+│   ├── ISSUE_TEMPLATE/
+│   │   ├── bug_report.md
+│   │   └── feature_request.md
+│   └── PULL_REQUEST_TEMPLATE.md
+├── .env.example
+├── .gitignore
+├── CHANGELOG.md
+├── CODE_OF_CONDUCT.md
+├── CONTRIBUTING.md
 ├── LICENSE
-└── README.md
+├── README.md
+├── requirements.txt
+└── SECURITY.md
 ```
 
 ---

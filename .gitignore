@@ -1,26 +1,55 @@
 # Python
 __pycache__/
 *.py[cod]
+*.egg-info/
+dist/
+build/
+*.egg
+*.whl
+
+# Virtual environments
 venv/
 env/
 .venv/
+virtualenv/
 
 # Environment
 .env
 .env.local
+.env.*
 
 # IDE
 .vscode/
 .idea/
 *.swp
+*.swo
+*~
 
 # Data
 data/
 *.pdf
 *.txt
 *.docx
+
+# Vector stores
 chroma/
+*.index
 
 # Testing
 .pytest_cache/
 .coverage
+coverage/
+htmlcov/
+*.coverage.*
+.tox/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
