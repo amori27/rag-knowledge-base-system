@@ -1,9 +1,5 @@
 # RAG Knowledge Base System
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue)](https://www.python.org/)
-[![CI](https://github.com/amori27/rag-knowledge-base-system/actions/workflows/ci.yml/badge.svg)](https://github.com/amori27/rag-knowledge-base-system/actions/workflows/ci.yml)
-
 A clean, lightweight RAG (Retrieval-Augmented Generation) pipeline in pure Python. Document chunking, embeddings, vector storage, and retrieval — all in a few hundred lines, with a swappable backend at each layer.
 
 ---
