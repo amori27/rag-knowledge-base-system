@@ -4,9 +4,6 @@ This module provides utilities for generating text embeddings
 using OpenAI or local models.
 """
 
-from typing import Any
-
-
 class EmbeddingGenerator:
     """Generates embeddings for text."""
 

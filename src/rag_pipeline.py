@@ -77,7 +77,7 @@ class RAGPipeline:
         """
         context_text = "\n\n".join([c.get("metadata", {}).get("text", "") for c in context])
 
-        answer = f"Based on the retrieved context, the answer to '{query}' is: ..."
+        answer = f"Based on the retrieved context for '{query}': {context_text[:500]}..."
 
         return answer
 
